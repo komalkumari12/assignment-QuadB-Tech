@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>HodInfo</title>
+  </head>
+  <body class="bg-[#191d28]">
+    <!-- nav sec -->
+    <div
+      class="flex text-[#5dc7c2] justify-between lg:flex-row md:flex-row flex-col items-center p-6"
+    >
+      <div class="text-5xl p-6 font-bold tracking-wide">
+        <h1>HODLINFO</h1>
+      </div>
+      <div class="flex items-center justify-center space-x-4 p-6">
+        <ul class="flex items-center justify-center space-x-4 gap-5">
+          <select
+            name="currency"
+            id="currency"
+            class="bg-[#2e3241] text-white p-2 rounded-xl -2 -[#2f3241] cursor-pointer"
+          >
+            <option value="INR" class="text-white p-5 rounded-xl -2 -[#2f3241]">
+              INR
+            </option>
+          </select>
+          <form action="/" method="POST" id="myForm">
+            <select
+              name="currency"
+              id="myDropdown"
+              class="bg-[#2e3241] text-white p-2 rounded-xl -2 -[#2f3241] cursor-pointer"
+            >
+            <option
+            value=""
+            class="text-white p-5 rounded-xl -2 -[#2f3241]"
+          >
+            Select Currency
+          </option>
+              <option
+                value="USDT"
+                class="text-white p-5 rounded-xl -2 -[#2f3241]"
+              >
+                USDT
+              </option>
+              <option
+                value="BTC"
+                class="text-white p-5 rounded-xl -2 -[#2f3241]"
+              >
+                BTC
+              </option>
+              <option
+                value="ETH"
+                class="text-white p-5 rounded-xl -2 -[#2f3241]"
+              >
+                ETH
+              </option>
+              <option
+                value="BNB"
+                class="text-white p-5 rounded-xl -2 -[#2f3241]"
+              >
+                BNB
+              </option>
+              <option
+                value="USDC"
+                class="text-white p-5 rounded-xl -2 -[#2f3241]"
+              >
+                USDC
+              </option>
+              <option
+                value="BUSD"
+                class="text-white p-5 rounded-xl -2 -[#2f3241]"
+              >
+                BUSD
+              </option>
+              <option
+                value="XRP"
+                class="text-white p-5 rounded-xl -2 -[#2f3241]"
+              >
+                XRP
+              </option>
+              <option
+                value="DOT"
+                class="text-white p-5 rounded-xl -2 -[#2f3241]"
+              >
+                DOT
+              </option>
+              <option
+                value="UNI"
+                class="text-white p-5 rounded-xl -2 -[#2f3241]"
+              >
+                UNI
+              </option>
+              <option
+                value="LINK"
+                class="text-white p-5 rounded-xl -2 -[#2f3241]"
+              >
+                LINK
+              </option>
+              <option
+                value="LTC"
+                class="text-white p-5 rounded-xl -2 -[#2f3241]"
+              >
+                LTC
+              </option>
+              <option
+                value="ADA"
+                class="text-white p-5 rounded-xl -2 -[#2f3241]"
+              >
+                ADA
+              </option>
+            </select>
+          </form>
+          <button
+            name="currency"
+            id="currency"
+            class="bg-[#2e3241] text-white p-2 rounded-xl -2 -[#2f3241]"
+          >
+            BUY USDT
+          </button>
+        </ul>
+      </div>
+      <div class="flex items-center justify-center space-x-4 p-6">
+        <div id="timer" class="text-[#5dc7c2] text-2xl border-4 border-[#5dc7c2] rounded-full h-[40px] flex items-center justify-center w-[40px]"></div>
+
+        <button
+          class="bg-[#5dc7c2] text-white p-2 rounded-xl -2 -[#2f3241] px-4"
+        >
+          <i class="fab fa-telegram-plane"></i>
+          <a href="/login" class="font-bold">Connect Telegram</a>
+        </button>
+
+      </div>
+    </div>
+
+    <div class="flex w-full justify-center">
+      <h1 class="text-4xl text-[#5dc7c2] font-bold tracking-wide">
+        Best Price to Trade
+      </h1>
+    </div>
+    <table class="w-full">
+      <thead class="p-4">
+        <tr>
+          <th class="text-[#b9bdb7] text-2xl">#</th>
+          <th class="text-[#b9bdb7] text-2xl">Name</th>
+          <th class="text-[#b9bdb7] text-2xl">Last Trading Price</th>
+          <th class="text-[#b9bdb7] text-2xl">Buy / Sell Price</th>
+          <th class="text-[#b9bdb7] text-2xl">Lowest</th>
+          <th class="text-[#b9bdb7] text-2xl">Highest</th>
+        </tr>
+      </thead>
+      <tbody class="bg-[#2e3241] p-4">
+        <% for (let i = 0; i < data.length; i++) { %>
+        <tr class="text-white p-10">
+          <td class="px-4 py-2 text-white">
+            <span class="font-bold"><%= i+1 %></span>
+          </td>
+          <td class="px-4 py-2 text-white">
+            <span class="font-bold"><%= data[i].name %></span>
+          </td>
+
+          <td class="px-4 py-2 text-white">
+            <span class="font-bold">₹ <%= data[i].last %></span>
+          </td>
+          <td class="px-4 py-2 text-white">
+            <span class="font-bold">₹ <%= data[i].buy %></span>
+            /
+            <span class="font-bold">₹ <%= data[i].sell %></span>
+          </td>
+          <td class="px-4 py-2 text-white">
+            <span class="font-bold">₹ <%= data[i].low %></span>
+          </td>
+          <td class="px-4 py-2 text-white">
+            <span class="font-bold">₹ <%= data[i].high %></span>
+          </td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+    <script
+      src="https://kit.fontawesome.com/2c36e9b7b1.js"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      const dropdown = document.getElementById('myDropdown');
+      dropdown.addEventListener('change', function () {
+        document.getElementById('myForm').submit();
+      });
+      setInterval(function () {
+        location.reload();
+      }, 60000);
+      const timer = document.getElementById('timer');
+      const time = 60;
+      let count = time;
+      setInterval(function () {
+        count--;
+        timer.innerHTML = count;
+        if (count == 0) {
+          count = time;
+        }
+      }, 1000);
+    </script>
+  </body>
+</html>
